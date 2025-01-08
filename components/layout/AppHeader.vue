@@ -1,9 +1,29 @@
 <script setup lang="ts">
 import { computed, onMounted, reactive, ref, watch } from "vue";
 import Logo from "@/assets/svg/logo.svg";
+import LogoWeaveRealm from "@/assets/image/weaverealm.png";
 import { Page, useStore } from "@/stores";
 import gsap from "gsap";
 import { useRouter } from "vue-router";
+import { useI18n } from 'vue-i18n'; // 引入 useI18n API
+
+// 获取 i18n 的 locale 和 t 方法
+const { locale } = useI18n();
+
+// 获取当前语言
+const currentLang = locale.value;
+
+// 切换语言的函数
+function changeLanguage(lang) {
+  locale.value = lang // 更新语言
+}
+
+// 切换语言的函数
+function toggleLanguage() {
+  const newLang = currentLang === 'zh' ? 'en' : 'zh'; // 切换语言
+  locale.value = newLang; // 更新语言
+}
+
 const store = useStore(),
    router = useRouter();
 const headerRef = ref<HTMLElement | null>(null);
@@ -30,26 +50,51 @@ onMounted(() => {
       ease: "elastic.out",
    });
 });
-const links = reactive<Array<{ to: Page; text: string }>>([
-   {
-      text: "Home",
+const { t } = useI18n(); // 获取 t 方法用于翻译
+// const links = reactive<Array<{ to: Page; text: string }>>([
+//    {
+//       // text: "主页",
+//       text: t('message.home'),
+//       to: "/",
+//    },
+//    {
+//       text: t('message.service'),
+//       to: "/services",
+//    },
+//    {
+//       text: t('message.about'),
+//       to: "/about",
+//    },
+//    {
+//       text: t('message.news'),
+//       to: "/news",
+//    },
+// ]);
+const links = computed(() => [
+{
+      // text: "主页",
+      text: t('message.home'),
       to: "/",
    },
    {
-      text: "Services",
+      text: t('message.service'),
       to: "/services",
    },
    {
-      text: "About Us",
+      text: t('message.about'),
       to: "/about",
    },
-]);
+   {
+      text: t('message.news'),
+      to: "/news",
+   },
+])
 </script>
 
 <template>
    <Teleport to="body">
       <header ref="headerRef" class="Header">
-         <img :src="Logo" alt="Cadence" class="Logo" />
+         <img :src="LogoWeaveRealm" alt="WeaveRealm" class="Logo" />
          <nav class="Navigation-Bar">
             <menu class="Navlinks">
                <router-link
@@ -65,13 +110,25 @@ const links = reactive<Array<{ to: Page; text: string }>>([
                   {{ link.text }}
                </router-link>
                <button type="button" class="Navlink Contact-Us">
-                  Contact Us
+                  {{ $t('message.contact') }}
                </button>
-               <button type="button" class="Item-Tracker-Button">
+               <!-- <button @click="toggleLanguage">
+               {{ currentLang === 'en' ? 'English' : '中文' }}
+               </button> -->
+
+               <button 
+               :class="{'active': currentLang === 'zh'}" 
+               @click="changeLanguage('zh')">中文</button>
+               <button 
+               :class="{'active': currentLang === 'en'}" 
+               @click="changeLanguage('en')">English</button>
+
+               <!-- <button type="button" class="Item-Tracker-Button">
                   Track An Item
-               </button>
+               </button> -->
             </menu>
          </nav>
+         
          <button
             @click="sidebarIsOpen = !sidebarIsOpen"
             :class="[{ Toggled: sidebarIsOpen }, 'Sidebar-Toggle']"
@@ -148,6 +205,14 @@ const links = reactive<Array<{ to: Page; text: string }>>([
    font-weight: 700;
    border-bottom: 3px solid var(--Dark-Green);
 }
+.language-selector button {
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  background-color: #fff;
+} 
+
 .Item-Tracker-Button {
    padding: 14px 24px;
    margin: auto;
@@ -163,6 +228,9 @@ const links = reactive<Array<{ to: Page; text: string }>>([
    position: relative;
    display: none;
 }
+
+
+
 @media (max-width: 912px) {
    .Navlinks > * {
       margin-right: 1.5vw;

@@ -4,16 +4,15 @@ import Facebook from "@/assets/svg/facebook.svg";
 import Twitter from "@/assets/svg/twitter.svg";
 import LinkedIn from "@/assets/svg/linkedin.svg";
 import Instagram from "@/assets/svg/instagram.svg";
+import LogoWeaveRealm from "@/assets/image/weaverealm.png";
 </script>
 
 <template>
    <footer class="App-Footer">
       <div class="Logo-Container">
-         <img :src="Logo" alt="Cadence Logo" />
+         <img :src="LogoWeaveRealm" alt="WeaveRealm Logo" />
          <p>
-            © Cadence®, the Cadence logo, and the names and marks associated
-            with Cadence's products are trademarks of Cadence Logistics and/or
-            its affiliates.
+            Copyright © WeaveRealm®
          </p>
       </div>
       <div class="Icon-Row Outer-Icon-Row">
@@ -26,7 +25,7 @@ import Instagram from "@/assets/svg/instagram.svg";
          <li class="Links">
             <h3>INFO</h3>
             <ul>
-               <li>About Cadence</li>
+               <li>About WeaveRealm</li>
                <li>Help & Support</li>
                <li>FAQs</li>
                <li>Return Policy</li>
@@ -57,9 +56,15 @@ import Instagram from "@/assets/svg/instagram.svg";
                <img :src="LinkedIn" alt="linkedin icon" />
                <img :src="Twitter" alt="twitter icon" />
             </div>
+            <ul>
+               <li></li>
+               <li> Phone 1: 189-7491-9065 </li>
+               <li> Phone 2: 199-4183-3219 </li>
+            </ul>
          </li>
       </nav>
-      <p class="Copyright">Cadence Logistics 2022.</p>
+      <p class="RecordNumber">this will be the RecordNumber.</p>
+      <p class="Copyright">WeaveRealm 2025.</p>
    </footer>
 </template>
 
@@ -115,6 +120,18 @@ import Instagram from "@/assets/svg/instagram.svg";
 }
 .Outer-Icon-Row {
    display: none;
+}
+.RecordNumber {
+   position: absolute;
+   bottom: 0;
+   font-family: "Product Sans";
+   font-style: normal;
+   font-weight: 400;
+   font-size: 19.0317px;
+   line-height: 23px;
+   text-align: center;
+   margin-bottom: 70px;
+   color: #11567d;
 }
 
 .Copyright {

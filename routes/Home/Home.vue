@@ -57,13 +57,14 @@ onMounted(() => {
    <main class="Home">
       <section class="Section Section-1">
          <div class="Text">
-            <h1 class="Heading">Here to there, in record time.</h1>
+            <h1 class="Heading">{{ $t('message.company name') }}</h1>
             <p class="Paragraph">
-               Cadence is a logistics company focused on providing the best
-               means of transport for your products and services. Send anything
-               to anywhere, safely and quickly, with us.
+               {{ $t('message.slogan') }}
             </p>
-            <button type="button" class="Action-Button">Get Started</button>
+            <!-- <button type="button" class="Action-Button" onclick="">关于我们</button> -->
+            <router-link to="/About">
+               <button type="button" class="Action-Button">{{ $t('message.about') }}</button>
+            </router-link>
          </div>
          <div class="Paper-Plane-Container">
             <img
@@ -86,32 +87,57 @@ onMounted(() => {
             class="Floating-Image Dollar-Sign"
             alt="A green-to-brown colored dollar sign."
          />
-         <h1 class="Heading">Cheap, affordable costs.</h1>
-         <p class="Paragraph">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam sint
-            possimus illum voluptates veniam atque placeat qui, ratione, ex
-            eligendi beatae ad repudiandae quidem dicta, mollitia cumque aliquid
-            aspernatur ullam.
+         <h1 class="Heading">{{ $t('message.about') }}</h1>
+         <p class="Paragraph">{{ $t('message.Comprehensive') }} | {{ $t('message.Efficient') }} | {{ $t('message.Efficient') }}</p>
+         <p class="Paragraph"> {{ $t('message.Deep into the industry') }}</p>
+         <p class="Paragraph-text">
+            {{ $t('message.Deep into the industry intro') }}
          </p>
-         <button type="button" class="Action-Button">
+
+         <p class="Paragraph">{{ $t('message.Professional Team') }}</p>
+         <p class="Paragraph-text">
+            {{ $t('message.Professional Team intro') }}       
+         </p>
+         
+         <!-- <button type="button" class="Action-Button">
             See Our Pricing List
-         </button>
+         </button> -->
+         <router-link to="/About">
+               <button type="button" class="Action-Button">{{ $t('message.know more') }}</button>
+         </router-link>
+         
       </section>
       <section ref="section3Ref" class="Section Section-3">
-         <h1 class="Heading">Seamless and Secure Delivery.</h1>
+         <h1 class="Heading">{{ $t('message.Portfolio') }}</h1>
+         <p class="Paragraph">
+            {{ $t('message.Projects showcase') }}<br>
+            {{ $t('message.Things we ve done before') }}<br>
+            {{ $t('message.From VR experiences to immersive theatre') }}
+         </p>
+
          <div class="Grid-Container">
             <GridItem :src="World" alt="A white outline of a globe.">
-               Ship from UK/USA to Nigeria & Export to 230 plus locations
-               worldwide.
+               <span class="large-text">Homeland</span><br>
+               {{ $t('message.WeaverRealm VR') }} x IP {{ $t('message.Animal Archictecture') }}
             </GridItem>
             <GridItem :src="Location" alt="A white outline of a location pin.">
-               Get real time tracking on your shipments and services.
+               <span class="large-text">Taste of Memories</span><br>
+               {{ $t('message.WeaverRealm VR') }} x {{ $t('message.London Synesthesia Association') }}
             </GridItem>
             <GridItem :src="Box" alt="A white outline of a packaging box.">
-               Proper, waterproof and damage-resistant item packaging.
+               <span class="large-text">{{ $t('message.Journey through Mountains and Seas') }}</span><br>
+               {{ $t('message.WeaverRealm play') }} x {{ $t('message.The Classic of Mountains and Seas') }}
+            </GridItem>
+            <GridItem :src="World" alt="A white outline of a globe.">
+               <span class="large-text">{{ $t('message.Designated Strings') }}</span><br>
+               {{ $t('message.WeaverRealm VR') }} x {{ $t('message.Quanzhou Puppet Troupe')}}
             </GridItem>
          </div>
-         <button type="button" class="Action-Button">Learn More</button>
+         <router-link to="/News">
+               <button type="button" class="Action-Button">{{ $t('message.know more') }}</button>
+         </router-link>
+         <!-- <button type="button" class="Action-Button">Learn More</button> -->
+      
       </section>
       <section ref="section4Ref" class="Section Section-4">
          <div class="Handshake-Container">
@@ -223,9 +249,30 @@ onMounted(() => {
    text-align: center;
    width: 60%;
 }
+
+.Section-2 .Paragraph-text {
+   text-align: left;
+   width: 60%;
+}
+
+.Section-2 .Two-Columns {
+   display: flex;              /* 启用 Flexbox 布局 */
+   align-items: center;          /* 垂直居中 */
+   justify-content: center;      /* 水平居中 */
+   width: 80%;                /* 父元素宽度为 100% */
+   text-align: left;
+}
+
+.Section-2 .Two-Columns .left-column,
+.Section-2 .Two-Columns .right-column {
+   width: 30%;                /* 每列占 48% 宽度 */
+   box-sizing: border-box;    /* 包含边框和内边距 */
+}
+
 .Floating-Image {
    position: absolute;
    width: 15%;
+   /* color: #204b5787; */
    color: #204b5787;
    filter: drop-shadow(0px 22px 13px);
    transition-duration: 500ms;
@@ -258,9 +305,18 @@ onMounted(() => {
    -webkit-text-fill-color: #c1dbe4;
    background-clip: none;
 }
+.Section-3 .Paragraph {
+   width: 60%;
+   text-align: center;
+   color: #c1dbe4;
+   background: none;
+   -webkit-background-clip: none;
+   -webkit-text-fill-color: #c1dbe4;
+   background-clip: none;
+}
 .Section-3 .Grid-Container {
    display: grid;
-   grid: auto / auto auto auto;
+   grid: auto / auto auto auto auto;
    gap: 15.68px;
    margin-top: 30px;
 }
@@ -268,6 +324,10 @@ onMounted(() => {
    border: 2.26829px solid #c1dbe4;
    border-radius: 11.3415px;
    background-color: transparent;
+}
+.Section-3 .large-text {
+  font-size: 1.2em;  /* 设置“命运之线”的字体比默认大 */
+  line-height: 1.5;      /* 增加行间距，1.5 是一个常用的行间距值 */
 }
 .Section-4 {
    display: grid;
