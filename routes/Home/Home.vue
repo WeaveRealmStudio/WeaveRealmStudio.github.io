@@ -10,6 +10,10 @@ import Handshake from "@/assets/svg/handshake.svg";
 import { PAPER_PLANE, tweens } from "@/animations";
 import { onMounted, ref } from "vue";
 import GridItem from "./GridItem.vue";
+import Homeland from "@/assets/image/homeland.png";
+import TasteOfMemory from "@/assets/image/taste_of_memory.jpg";
+import Journey from "@/assets/image/journey_through_moutains_and_seas.png";
+import Strings from "@/assets/image/designated_strings.jpg";
 
 const section2Ref = ref<Nullable<HTMLElement>>(null),
    section3Ref = ref<Nullable<HTMLElement>>(null),
@@ -116,21 +120,29 @@ onMounted(() => {
          </p>
 
          <div class="Grid-Container">
-            <GridItem :src="World" alt="A white outline of a globe.">
+            <GridItem>
+               <img :src="Homeland" alt="A white outline of a globe." style="width: 80%; height: auto;"><br>
+               <br>
                <span class="large-text">Homeland</span><br>
                {{ $t('message.WeaverRealm VR') }} x IP {{ $t('message.Animal Archictecture') }}
             </GridItem>
-            <GridItem :src="Location" alt="A white outline of a location pin.">
+            <GridItem>
                <span class="large-text">Taste of Memories</span><br>
-               {{ $t('message.WeaverRealm VR') }} x {{ $t('message.London Synesthesia Association') }}
+               {{ $t('message.WeaverRealm VR') }} x {{ $t('message.London Synesthesia Association') }}<br>
+               <br>
+               <img :src="TasteOfMemory" alt="A white outline of a globe." style="width: 80%; height: auto;">
             </GridItem>
-            <GridItem :src="Box" alt="A white outline of a packaging box.">
+            <GridItem>
+               <img :src="Journey" alt="A white outline of a globe." style="width: 80%; height: auto;"><br>
+               <br>
                <span class="large-text">{{ $t('message.Journey through Mountains and Seas') }}</span><br>
                {{ $t('message.WeaverRealm play') }} x {{ $t('message.The Classic of Mountains and Seas') }}
             </GridItem>
-            <GridItem :src="World" alt="A white outline of a globe.">
+            <GridItem>
                <span class="large-text">{{ $t('message.Designated Strings') }}</span><br>
-               {{ $t('message.WeaverRealm VR') }} x {{ $t('message.Quanzhou Puppet Troupe')}}
+               {{ $t('message.WeaverRealm VR') }} x {{ $t('message.Quanzhou Puppet Troupe')}}<br>
+               <br>
+               <img :src="Strings" alt="A white outline of a globe." style="width: 80%; height: auto;">
             </GridItem>
          </div>
          <router-link to="/News">
@@ -317,9 +329,28 @@ onMounted(() => {
 .Section-3 .Grid-Container {
    display: grid;
    grid: auto / auto auto auto auto;
-   gap: 15.68px;
-   margin-top: 30px;
+   gap: 17.68px;
+   /* gap: 0px; */
+   margin-top: 150px;
+   height: 400px; /* 设置固定高度 */
+   /* 或者 */
+   min-height: 400px; /* 设置最小高度，容器会根据内容扩展 */
 }
+
+.Section-3 .GridItem {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   text-align: center;
+}
+
+.Section-3 .GridItem img {
+   width: 80%;     /* 图片宽度为容器宽度的80% */
+   height: auto;   /* 高度自动按比例缩放 */
+   object-fit: contain; /* 确保图片按比例缩放，不拉伸 */
+}
+
 .Section-3 .Action-Button {
    border: 2.26829px solid #c1dbe4;
    border-radius: 11.3415px;
