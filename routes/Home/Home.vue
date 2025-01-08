@@ -170,6 +170,20 @@ onMounted(() => {
    </main>
 </template>
 
+<style>
+html, body {
+   background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), /* 半透明黑色覆盖 */
+    url('@/assets/image/background.jpg'); /* 背景图片 */
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  height: 100%;
+  margin: 0;
+}
+</style>
+
 <style scoped>
 .Paragraph {
    font-family: "Product Sans";
@@ -307,6 +321,7 @@ onMounted(() => {
    align-items: center;
    flex-direction: column;
    background: linear-gradient(110.76deg, #204b57 0.54%, #053957 66.49%);
+   background: linear-gradient(110.76deg, rgba(32, 75, 87, 0.7) 0.54%, rgba(5, 57, 87, 0.7) 66.49%);
 }
 .Section-3 .Heading {
    width: 60%;

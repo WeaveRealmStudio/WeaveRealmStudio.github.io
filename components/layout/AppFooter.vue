@@ -58,8 +58,8 @@ import LogoWeaveRealm from "@/assets/image/weaverealm.png";
             </div>
             <ul>
                <li></li>
-               <li> Phone 1: 189-7491-9065 </li>
-               <li> Phone 2: 199-4183-3219 </li>
+               <li> 189-7491-9065 </li>
+               <li> 199-4183-3219 </li>
             </ul>
          </li>
       </nav>

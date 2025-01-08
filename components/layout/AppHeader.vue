@@ -191,7 +191,8 @@ const links = computed(() => [
    order: 0;
    flex-grow: 0;
    font-size: 18px;
-   background-color: white;
+   background-color: rgba(255, 255, 255, 0.9);
+   /* background: #11567d29; */
 }
 .Logo {
    height: 48%;
